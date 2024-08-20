@@ -79,6 +79,7 @@ in {
         pkgs.darwin.apple_sdk.frameworks.CoreServices
       ]);
 
+    languages.elixir.enable = true;
     services.postgres = {
       enable = true;
       initialScript = ''
@@ -109,8 +110,6 @@ in {
       };
       phoenix = {
         exec = "${startScript}/bin/start-phoenix";
-
-        languages.elixir.enable = true;
 
         process-compose = {
           # SIGINT (= 9) for faster shutdown. there is no state involved
