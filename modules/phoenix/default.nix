@@ -110,6 +110,8 @@ in {
       phoenix = {
         exec = "${startScript}/bin/start-phoenix";
 
+        languages.elixir.enable = true;
+
         process-compose = {
           # SIGINT (= 9) for faster shutdown. there is no state involved
           shutdown.signal = 15;
