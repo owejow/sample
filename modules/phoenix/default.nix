@@ -61,6 +61,8 @@ in {
 
   };
   config = lib.mkIf cfg.enable {
+    languages.elixir.enable = true;
+
     packages = [ pkgs.git pkgs.rustc pkgs.cargo ]
       ++ (lib.optionals pkgs.stdenv.isLinux [
         # For ExUnit Notifier on Linux.
@@ -79,7 +81,6 @@ in {
         pkgs.darwin.apple_sdk.frameworks.CoreServices
       ]);
 
-    languages.elixir.enable = true;
     services.postgres = {
       enable = true;
       initialScript = ''
