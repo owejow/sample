@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  cfg = config.services.phoenix;
+  cfg = config.services.zola;
   inherit (lib) types;
   interface = "127.0.0.1";
   zola_port = 1111;
@@ -13,7 +13,9 @@ let
     text =
       # bash
       ''
-        mix phx.server
+        auto_start=""
+        if cfg.auto_start; then auto_start="-O"; fi
+        zola serve --interface ${cfg.interface} --port ${cfg.zola_port} $auto_start 
       '';
   };
 
@@ -72,7 +74,7 @@ in {
 
     #"cd ${config.services.phoenix.app_name} && mix phx.server";
     processes = {
-      phoenix = {
+      zola = {
         exec = "${startScript}/bin/start-zola";
 
         readiness_probe = {
