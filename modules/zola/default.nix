@@ -28,7 +28,7 @@ let
         #
         # Using non-https to ease compatibility issues with ssh versions between server and curl
 
-        curl -sSf  http://${listen_address}:${toString zola_port}/ > /dev/null
+        curl -sSf  http://${interface}:${toString zola_port}/ > /dev/null
       '';
   };
 in {
