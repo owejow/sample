@@ -1,1 +1,1 @@
-_: { imports = [ ./phoenix ./stripe-mock ]; }
+_: { imports = [ ./phoenix ./stripe-mock ./zola ]; }
