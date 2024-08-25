@@ -71,24 +71,24 @@ in {
   };
   config = lib.mkIf cfg.enable {
     packages = [ pkgs.zola ];
-
-    #"cd ${config.services.phoenix.app_name} && mix phx.server";
     processes = {
       zola = {
         exec = "${startScript}/bin/start-zola";
+        process-compose = {
+          shutdown.signal = 15;
+          readiness_probe = {
+            # need to use exec.command inside the readiness probe.
+            exec.command = "${healthCheckScript}/bin/check-health-zola";
+            initial_delay_seconds = 2;
+            period_seconds = 10;
+            timeout_seconds = 4;
+            success_threshold = 1;
+            failure_threshold = 5;
+          };
 
-        readiness_probe = {
-          # need to use exec.command inside the readiness probe.
-          exec.command = "${healthCheckScript}/bin/check-health-zola";
-          initial_delay_seconds = 2;
-          period_seconds = 10;
-          timeout_seconds = 4;
-          success_threshold = 1;
-          failure_threshold = 5;
+          # https://github.com/F1bonacc1/process-compose#-auto-restart-if-not-healthy
+          availability.restart = "on_failure";
         };
-
-        # https://github.com/F1bonacc1/process-compose#-auto-restart-if-not-healthy
-        availability.restart = "on_failure";
       };
     };
   };
