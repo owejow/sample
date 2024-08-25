@@ -13,11 +13,11 @@ let
     text =
       # bash
       ''
-        auto_start=""
-        if ${cfg.auto_start}; then auto_start="-O"; fi
+        open=""
+        if ${toString cfg.open} == "1"; then open="-O"; fi
         zola serve --interface ${cfg.interface} --port ${
           toString cfg.port
-        } $auto_start 
+        } $open 
       '';
   };
 
