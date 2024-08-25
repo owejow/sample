@@ -61,7 +61,7 @@ in {
       example = "127.0.0.1";
     };
     open = lib.mkOption {
-      type = types.boolean;
+      type = types.bool;
       description = ''
         Automatically open the site in default browser
       '';
