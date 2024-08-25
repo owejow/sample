@@ -15,7 +15,9 @@ let
       ''
         auto_start=""
         if cfg.auto_start; then auto_start="-O"; fi
-        zola serve --interface ${cfg.interface} --port ${cfg.port} $auto_start 
+        zola serve --interface ${cfg.interface} --port ${
+          toString cfg.port
+        } $auto_start 
       '';
   };
 
