@@ -14,7 +14,7 @@ let
       # bash
       ''
         auto_start=""
-        if cfg.auto_start; then auto_start="-O"; fi
+        if ${cfg.auto_start}; then auto_start="-O"; fi
         zola serve --interface ${cfg.interface} --port ${
           toString cfg.port
         } $auto_start 
@@ -52,7 +52,7 @@ in {
     };
 
     interface = lib.mkOption {
-      type = types.string;
+      type = types.str;
       description = ''
         Interface zola binds to
       '';
