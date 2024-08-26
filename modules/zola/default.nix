@@ -85,7 +85,7 @@ in {
 
   };
   config = lib.mkIf cfg.enable {
-    packages = [ cfg.paackage ];
+    packages = [ cfg.package ];
     processes = {
       zola = {
         exec = "${startScript}/bin/start-zola";
