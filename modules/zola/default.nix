@@ -13,11 +13,11 @@ let
     text =
       # bash
       ''
-        local open="${toString cfg.open}"
-        local port="${toString cfg.port}"
-        local interface="${toString cfg.interface}"
+        open="${toString cfg.open}"
+        port="${toString cfg.port}"
+        interface="${toString cfg.interface}"
 
-        if "$open" == "1"; then 
+        if [ "$open" = "1" ]; then 
           zola serve --interface "$interface" --port "$port" -O
         else
           zola serve --interface "$interface" --port "$port"
