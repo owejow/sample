@@ -17,7 +17,7 @@ let
         local port="${toString cfg.port}"
         local interface="${toString cfg.interface}"
 
-        if "${open}" == "1"; then 
+        if "$open" == "1"; then 
           zola serve --interface "$interface" --port "$port" -O
         else
           zola serve --interface "$interface" --port "$port"
