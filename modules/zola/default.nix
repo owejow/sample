@@ -73,10 +73,19 @@ in {
       defaultText = lib.literalExpression false;
       example = true;
     };
+    package = lib.mkOption {
+      type = types.package;
+      description = ''
+        The zola package to use
+      '';
+      default = pkgs.zola;
+      defaultText = lib.literalExpression pkgs.zola;
+      example = lib.literalExpression "nixpkgs-latest.zola";
+    };
 
   };
   config = lib.mkIf cfg.enable {
-    packages = [ pkgs.zola ];
+    packages = [ cfg.paackage ];
     processes = {
       zola = {
         exec = "${startScript}/bin/start-zola";
