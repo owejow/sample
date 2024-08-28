@@ -90,6 +90,12 @@ inputs:
 ### [zola](https://getzola.org)
 
 - zola.services.open : open browser automatically to zola url
+
   - Type: boolean
   - Default: false
   - Example: true
+
+- zola.services.package : The zola package to use
+
+  - Type: package
+  - Default: uses pkgs.zola from nixpkgs
