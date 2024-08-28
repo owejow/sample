@@ -51,10 +51,10 @@ inputs:
   - Default: "postgres"
   - Example: "myrole"
 
-- phoenix.services.db_passbord : Postgres password to use
+- phoenix.services.db_password : Postgres password to use
   - Type: string
   - Default: "postgres"
-  - Example: "mypasswrod"
+  - Example: "mypassword"
 
 ### [stripe-mock](https://github.com/stripe/stripe-mock)
 
@@ -86,3 +86,10 @@ inputs:
   - type: port
   - default: 12112
   - example: 3131
+
+### [zola](https://getzola.org)
+
+- zola.services.open : open browser automatically to zola url
+  - Type: boolean
+  - Default: false
+  - Example: true
