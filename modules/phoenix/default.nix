@@ -17,6 +17,19 @@ let
       '';
   };
 
+  phoenixNodeDependenciesScript = pkgs.writeShellApplication {
+    name = "phoenix-node-dependencies";
+    text =
+      # bash
+      ''
+        if [[ -f assets/package.json ]]; then 
+           echo "skipping npm install. Did not file assets/package.json file";
+        else
+          cd assets && npm install
+        fi  
+      '';
+  };
+
   healthCheckScript = pkgs.writeShellApplication {
     name = "check-health-phoenix";
     runtimeInputs = [ pkgs.curl ];
@@ -91,8 +104,7 @@ in {
     #"cd ${config.services.phoenix.app_name} && mix phx.server";
     processes = {
       phoenix-node-dependencies = {
-        exec =
-          "[ -f assets/package.json ] || ( echo 'skipping npm install. Did not file assets/package.json file' && exit 0) && cd assets && npm install";
+        exec = "${phoenixNodeDependenciesScript}/bin/phoenix-node-dependencies";
       };
       phoenix-hex-dependency = { exec = "mix local.hex --force"; };
       phoenix-rebar-dependency = { exec = "mix local.rebar --force"; };
