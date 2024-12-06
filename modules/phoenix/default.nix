@@ -22,10 +22,11 @@ let
     text =
       # bash
       ''
-        if [[ -f assets/package.json ]]; then 
-           echo "skipping npm install. Did not file assets/package.json file";
-        else
+        if [ -f "assets/package.json" ]; then 
           cd assets && npm install
+          echo "npm installation complete"
+        else
+           echo "skipping npm install. Did not file assets/package.json file";
         fi  
       '';
   };
