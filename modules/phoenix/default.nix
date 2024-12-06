@@ -90,7 +90,9 @@ in {
 
     #"cd ${config.services.phoenix.app_name} && mix phx.server";
     processes = {
-      phoenix-node-dependencies = { exec = "cd assets && npm install"; };
+      phoenix-node-dependencies = {
+        exec = "[ -f assets/package.json ] && cd assets && npm install";
+      };
       phoenix-hex-dependency = { exec = "mix local.hex --force"; };
       phoenix-rebar-dependency = { exec = "mix local.rebar --force"; };
       phoenix-dependencies = {
