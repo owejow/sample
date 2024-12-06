@@ -92,7 +92,7 @@ in {
     processes = {
       phoenix-node-dependencies = {
         exec =
-          "[ -f assets/package.json ] || exit 0 && cd assets && npm install";
+          "[ -f assets/package.json ] || ( echo 'skipping npm install. Did not file assets/package.json file' && exit 0) && cd assets && npm install";
       };
       phoenix-hex-dependency = { exec = "mix local.hex --force"; };
       phoenix-rebar-dependency = { exec = "mix local.rebar --force"; };
